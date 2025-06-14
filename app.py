@@ -145,6 +145,17 @@ def api_estaciones():
         estaciones.extend(lista)
     return jsonify(sorted(estaciones))
 
+@app.route("/api/estaciones_por_linea")
+def api_estaciones_por_linea():
+    orden_lineas = [
+        "Línea 1", "Línea 2", "Línea 3", "Línea 4", "Línea 5", "Línea 6", "Línea 7", "Línea 8", "Línea 9", "Línea 10", "Línea 11", "Línea 12", "Línea R", "Línea ML"
+    ]
+    lineas_ordenadas = {k: data.LISTAS[k] for k in orden_lineas if k in data.LISTAS}
+    return jsonify({
+        "lineas": lineas_ordenadas,
+        "cabeceras": getattr(data, 'CABECERAS', [])
+    })
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)

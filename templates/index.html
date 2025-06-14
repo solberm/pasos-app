@@ -195,19 +195,40 @@
             cargarEstaciones();
         };
         function cargarEstaciones() {
-            fetch('/api/estaciones')
+            fetch('/api/estaciones_por_linea')
                 .then(response => response.json())
-                .then(estaciones => {
+                .then(data => {
                     const selects = ['origen', 'destino', 'origenDestinos'];
+                    // Orden correcto de líneas
+                    const ordenLineas = [
+                        "Línea 1", "Línea 2", "Línea 3", "Línea 4", "Línea 5", "Línea 6", "Línea 7", "Línea 8", "Línea 9", "Línea 10", "Línea 11", "Línea 12", "Línea R", "Línea ML"
+                    ];
                     selects.forEach(selectId => {
                         const select = document.getElementById(selectId);
-                        select.innerHTML = '<option value="">Selecciona una estación...</option>';
-                        estaciones.forEach(estacion => {
-                            const option = document.createElement('option');
-                            option.value = estacion;
-                            option.textContent = estacion;
-                            select.appendChild(option);
+                        select.innerHTML = '';
+                        ordenLineas.forEach(linea => {
+                            if (!data.lineas[linea]) return;
+                            const optgroup = document.createElement('optgroup');
+                            optgroup.label = linea;
+                            data.lineas[linea].forEach(estacion => {
+                                const option = document.createElement('option');
+                                option.value = estacion;
+                                if (data.cabeceras.includes(estacion)) {
+                                    option.innerHTML = `<b>${estacion}</b>`;
+                                } else {
+                                    option.textContent = estacion;
+                                }
+                                optgroup.appendChild(option);
+                            });
+                            select.appendChild(optgroup);
                         });
+                        // Añadir opción por defecto al principio
+                        const defaultOption = document.createElement('option');
+                        defaultOption.value = '';
+                        defaultOption.textContent = 'Selecciona una estación...';
+                        defaultOption.selected = true;
+                        defaultOption.disabled = true;
+                        select.insertBefore(defaultOption, select.firstChild);
                     });
                 });
         }
