@@ -229,7 +229,7 @@
                 const data = await response.json();
                 const resultadoDiv = document.getElementById('resultadoPasos');
                 if (data.pasos !== null) {
-                    resultadoDiv.innerHTML = `Pasos: ${data.pasos}\nRuta: ${data.ruta.join(' → ')}`;
+                    resultadoDiv.innerHTML = `Pasos: <span style="color:red;font-weight:bold">${data.pasos}</span>\nRuta: ${data.ruta.join(' → ')}`;
                     resultadoDiv.className = 'result';
                 } else {
                     resultadoDiv.innerHTML = 'No se encontró ruta entre las estaciones seleccionadas';

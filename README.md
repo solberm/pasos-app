@@ -133,7 +133,8 @@ La aplicación utiliza el algoritmo de Dijkstra para encontrar las rutas mínima
 
 ## Autor
 
-Zala - v.2.22.100
+Zala - v.2.22.100  
+[La Ratonera Software](https://www.solberm.com/)
 
 ## Licencia
 
