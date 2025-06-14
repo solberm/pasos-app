@@ -21,4 +21,9 @@ var/
 .env
 .venv
 venv/
-ENV/ 
+ENV/
+.DS_Store
+*.log
+.coverage
+htmlcov/
+.pytest_cache/ 
