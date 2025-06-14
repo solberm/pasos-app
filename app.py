@@ -151,9 +151,11 @@ def api_estaciones_por_linea():
         "Línea 1", "Línea 2", "Línea 3", "Línea 4", "Línea 5", "Línea 6", "Línea 7", "Línea 8", "Línea 9", "Línea 10", "Línea 11", "Línea 12", "Línea R", "Línea ML"
     ]
     lineas_ordenadas = {k: data.LISTAS[k] for k in orden_lineas if k in data.LISTAS}
+    lineas_ordenadas["DEPOSITOS"] = data.LISTAS.get("DEPOSITOS", [])
     return jsonify({
         "lineas": lineas_ordenadas,
-        "cabeceras": getattr(data, 'CABECERAS', [])
+        "cabeceras": getattr(data, 'CABECERAS', []),
+        "depositos": getattr(data, 'DEPOSITOS', [])
     })
 
 if __name__ == "__main__":

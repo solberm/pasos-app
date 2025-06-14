@@ -222,6 +222,24 @@
                             });
                             select.appendChild(optgroup);
                         });
+                        // Añadir depósitos como optgroup al final
+                        if (data.depositos && data.depositos.length > 0) {
+                            const optgroupDepositos = document.createElement('optgroup');
+                            optgroupDepositos.label = "DEPOSITOS";
+                            // Ordenar depósitos por número de línea
+                            const depositosOrdenados = data.depositos.sort((a, b) => {
+                                const numA = parseInt(a.split('-')[0]);
+                                const numB = parseInt(b.split('-')[0]);
+                                return numA - numB;
+                            });
+                            depositosOrdenados.forEach(estacion => {
+                                const option = document.createElement('option');
+                                option.value = estacion;
+                                option.textContent = estacion;
+                                optgroupDepositos.appendChild(option);
+                            });
+                            select.appendChild(optgroupDepositos);
+                        }
                         // Añadir opción por defecto al principio
                         const defaultOption = document.createElement('option');
                         defaultOption.value = '';
