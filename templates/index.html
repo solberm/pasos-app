@@ -260,7 +260,7 @@
                 if (data.resultados && data.resultados.length > 0) {
                     let resultado = 'Destinos ordenados por pasos:\n\n';
                     data.resultados.forEach((item, index) => {
-                        resultado += `${index + 1}. ${item[1]} (${item[0]} pasos)\n`;
+                        resultado += `${index + 1}. ${item[1]} (<span style="color:red;font-weight:bold">${item[0]}</span> pasos)\n`;
                     });
                     resultadoDiv.innerHTML = resultado;
                     resultadoDiv.className = 'result';
