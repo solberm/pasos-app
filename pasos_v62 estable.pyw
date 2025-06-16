@@ -22,7 +22,7 @@ BTN_BG = "lightgrey"
 BTN_FG = "black"
 BTN_FONT = ("Arial", 10, "bold")
 TITLE_FONT = ("Arial", 18, "bold")
-VERSION = "v.2.22.100"
+VERSION = "v.6.25.162"
 AUTOR = "Zala"
 
 def create_button(parent, text, command, **kwargs):
